@@ -63,7 +63,7 @@ void mostrarRelogio(struct relogio *t){
 //cabou
 
 
-void inicio(){
+void inicio(){ //como inicia o jogo, basicamente o painel de inicio
     int x;
     printf("[1] 1 Jogador\n");
     printf("[2] 2 Jogadores\n");
@@ -78,7 +78,7 @@ void inicio(){
 }
 
 
-void inicializaTabuleiro(int tabuleiro[][16])
+void inicializaTabuleiro(int tabuleiro[][16]) //inicializa uma matris que sera um dos tabuleiro preenchendo tds as "casas"com -1
 {
     int linha, coluna;
     for(linha=0 ; linha < 16 ; linha++ )
@@ -88,7 +88,7 @@ void inicializaTabuleiro(int tabuleiro[][16])
 
 
 
-void mostraTabuleiroJogador1(int tabuleiro[][16]){
+void mostraTabuleiroJogador1(int tabuleiro[][16]){ //como o tabuleiro vai aparecer na tela do jogador 1 ou seja eh o tab do jogador 2
     
     int linha, coluna;
     
@@ -160,6 +160,8 @@ void mostraTabuleiroJogador2(int tabuleiro[][16]){
 }
 
 /* rascunho de como serao escolhidos as posicoes do bichinho
+ainda nao sei bem como colocar as embarcacoes em cada um dos tabuleiros, mas pensei em criar uma matriz pra cada tipo de barco que guarda as coordenadas x, y da peça,
+dai depois de sortear a posição do primeiro elemento usavaria alguma recursão pra preencher o resto do tabuleiro de acordo com o formato de cada peça.
 
 
 */
@@ -207,11 +209,11 @@ void aleatorizaTabuleiro (int tabuleiro[][16],? posP[2][], posC[2][], posT[2][],
     
 }
 
-void pow(linha, colunaLetra){
+void pow(linha, colunaLetra){ //tipo aqui eh basicamente a posição do tiro, eu quis colocar num vetor pra poder comparar em outra função a posição do tiro e das embarcações
     int posTiro[2], coluna;
     scanf("%c%d", &colunaLetra, &linha);
     posTiro[0]=linha;
-    switch(colunaLetra){
+    switch(colunaLetra){ //essa palhaçada aqui é pq a pessoa vai dar o Pow numa casa tipo E2, ai eu queria dar a esse E um numero de linha na matriz tabuleiro
         case 'A': coluna = 0;
         case 'B': coluna = 1;
         case 'C': coluna = 2;
@@ -231,13 +233,13 @@ void pow(linha, colunaLetra){
     }
     posTiro[1]=coluna;
 }
-int acertasse(int posTiro[2], posicao navio){
+int acertasse(int posTiro[2], posicao navio){// essa funcao vai ser basicamente pra verificar se o jogador acertou o tiro 1 pra vdd e 0 p falso, que eu usei dentro da funcao que altera o tab
     if (posicao do tiro == posicao aleatorias do navio){
         return 1;
         }
 return 0;
 }
-void alterarTabuleiro(posTiro[2], posicao navios, int tabuleiro[][16]){
+void alterarTabuleiro(posTiro[2], posicao navios, int tabuleiro[][16]){ //caso acerte ou nao o tab ele vai ser alterado pra por um * ou a embarcação dai e existencia dessa funcao
     if(acertasse(posTiro, posP))
         tabuleiro[posTiro[0]][posTiro[1]] = 121;
     else if(acertasse(posTiro, posH))
@@ -258,7 +260,7 @@ int main(int argc, const char * argv[]) {
     
     return 0;
 }
-/*
+/* aqui é meio que a ordem que as funções vão ser chamadas pra cada rodada de jogo
 incio()
  jogador1(){
  1 inicializaTabuleiro1(int J1[][16])
